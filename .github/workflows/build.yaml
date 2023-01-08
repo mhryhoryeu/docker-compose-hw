@@ -27,7 +27,7 @@ jobs:
       - name: Docker Hub login
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.USER }}
+          username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and push Docker images
@@ -45,10 +45,10 @@ jobs:
           SLACK_CHANNEL: notification_channel
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: |-
+          SLACK_MESSAGE: |
             "Job is done!"
-            "Image name: ${{ env.IMAGE_NAME }}"
-            "Version: ${{  github.ref_name }}"
+            "Image name: mhryhoryeu/docker-compose-hw:${{ github.ref_name }}"
+            "Version: ${{ github.ref_name }}"
           SLACK_TITLE: 'Notification from GitHub Action'
           SLACK_USERNAME: GitHub Action
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
