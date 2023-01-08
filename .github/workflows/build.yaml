@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/mhryhoryeu/docker-compose-hw:${{ github.ref_name }}
-            ${{ secrets.USER }}/docker-compose-hw:${{ github.ref_name }}
+            ${{ secrets.DH_USER }}/docker-compose-hw:${{ github.ref_name }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
