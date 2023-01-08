@@ -27,7 +27,7 @@ jobs:
       - name: Docker Hub login
         uses: docker/login-action@v2
         with:
-          username: ${{ github-actor }}
+          username: wolthrax
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and push Docker images
@@ -36,5 +36,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/mhryhoryeu/docker-compose-hw:${{  github.ref_name }}
-            wolthrax/docker-compose-hw:${{  github.ref_name }}
+            ghcr.io/mhryhoryeu/docker-compose-hw:${{ github.ref_name }}
+            wolthrax/docker-compose-hw:${{ github.ref_name }}
