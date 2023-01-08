@@ -17,16 +17,24 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Log in to the Container registry
+      - name: Container registry login
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.CR_TOKEN }}
 
+      - name: Docker Hub login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ github-actor }}
+          password: ${{ secrets.DH_TOKEN }}
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ghcr.io/mhryhoryeu/docker-compose-hw:${{  github.ref_name }}
+          tags: |
+            ghcr.io/mhryhoryeu/docker-compose-hw:${{  github.ref_name }}
+            wolthrax/docker-compose-hw:${{  github.ref_name }}
